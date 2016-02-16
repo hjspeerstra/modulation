@@ -4,43 +4,129 @@
 	<title>Sum of harmonics</title>
 
 	<!-- Include bootstrap styles -->	
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
 	<!-- The noUiSlider script and stylesheet -->
-	<link href="slider/jquery.nouislider.min.css" rel="stylesheet">
-	<link href="bootstrap-nouislider.css" rel="stylesheet">
+	<link href="assets/slider/jquery.nouislider.min.css" rel="stylesheet">
+	<link href="assets/bootstrap-nouislider.css" rel="stylesheet">
+	<link href="assets/style.css" rel="stylesheet">
 
 	<!-- Load a google font that suits right for math expressions -->
-	<link href='http://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
+	<link href='//fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
 
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
-	<style>
-	    td.upper-line { border-top: solid 1px black; }
-	    table.fraction { 
-	    	text-align: center; 
-	    	vertical-align: middle;
-	    	font-family: 'Crimson Text', serif;
-	    	font-size: 16px;
-	    }
-	    table.fraction td {
-	    	padding: 0 1px;
-	    }
-	    table.fraction td.function {
-	    	font-size: 24px;
-	    }
-	    .noUi-target {
-			margin-bottom: 15px;
-		}
-	</style>
 	
 	<!-- Not working properly for high definition canvas (retina) - disabled -->
 	<!--script src="hidpi-canvas-polyfill/dist/hidpi-canvas.min.js"></script-->
 </head>
 <body>
-<h1>Hello world!</h1>
+	<div class="container">
+		<div class="page-header">
+			<h2>Sum of harmonics</h2>
+		</div>
+		<div class="well">
+			<div class="row">
+				<form method="post" class="" action="">
+
+					<div id="inputs"></div>
+
+					<!-- template of a form item -->
+					<div id="template" style="display: none;">
+						<div class="col-sm-12 col-xs-12">
+							<div id="period-{i}" class="noUi-extended"></div>
+							<div class="input-group">
+								<span class="input-group-addon">T<sub>{i}</sub> (hrs):</span>
+								<input type="text" tabindex="{i}" name="period_{i}" class="form-control" placeholder="Period of {i} in hours">
+							</div>
+							<br>
+
+							<div id="amplitude-{i}" class="noUi-extended"></div>
+							<div class="input-group">
+								<span class="input-group-addon">a<sub>{i}</sub> (mtrs):</span>
+								<input type="text" tabindex="" name="amplitude_{i}" class="form-control" placeholder="Amplitude of {i}">
+							</div>
+							<br>
+
+							<div id="phase-{i}" class="noUi-extended"></div>
+							<div class="input-group">
+								<span class="input-group-addon">&phi;<sub>{i}</sub> / 2&pi;:</span>
+								<input type="text" tabindex="" name="phase_{i}" class="form-control" placeholder="Phase of {i}">
+							</div>
+						</div>
+					</div>
+					<!-- / template of a form item -->
+
+					<div class="actions col-sm-12 col-xs-12">
+						<div class="row">
+							<div class="col-md-6">
+								<a class="btn btn-default btn-block" href="">Reset</a>
+							</div>
+							<div class="col-md-6">
+								<button type="submit" name="" class="btn btn-primary btn-block">Draw</button>
+							</div>
+						</div>
+						<h5>Predefined settings</h5>
+						<button class="btn btn-default btn-block" id="sawTooth">Wave skewness</button>
+						<button class="btn btn-default btn-block" id="aSymmetric">Wave asymmetry (saw-tooth)</button>
+						<hr>
+
+						<table class="fraction" align="center" cellpadding="10" cellspacing="10">
+					    <tr>
+					        <td rowspan="2" nowrap="nowrap">
+					            &sum; = a<sub>1</sub> sin
+					        </td>
+					        <td rowspan="2" nowrap="nowrap" class="function">
+					            (
+					        </td>
+					        <td nowrap="nowrap">
+					            2 &pi;
+					        </td>
+					        <td rowspan="2" nowrap="nowrap">
+					            <i>t</i> &minus; &phi;<sub>1</sub>
+					        </td>
+					        <td rowspan="2" nowrap="nowrap" class="function">
+					            )
+					        </td>
+					        <td rowspan="2" nowrap="nowrap">
+					            &plus; a<sub>2</sub> sin
+					        </td>
+					        <td rowspan="2" nowrap="nowrap" class="function">
+					            (
+					        </td>
+					        <td nowrap="nowrap">
+					            2 &pi;
+					        </td>
+					        <td rowspan="2" nowrap="nowrap">
+					            <i>t</i> &minus; &phi;<sub>2</sub>
+					        </td>
+					        <td rowspan="2" nowrap="nowrap" class="function">
+					            )
+					        </td>
+					    </tr>
+					    <tr>
+					        <td class="upper-line">
+					            T<sub>1</sub>
+					        </td>
+					        <td class="upper-line">
+					            T<sub>2</sub>
+					        </td>
+					    </tr>
+					</table>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!--div style="width: 1140px; heigth: 300px"-->
+		<canvas id="summed" width="2280" height="400" style="width: 1140px; heigth: 200px"></canvas>
+		<canvas id="single" width="2280" height="400" style="width: 1140px; heigth: 200px"></canvas>
+		<!--/div-->
+	</div>
 </body>
+
+<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="assets/slider/jquery.nouislider.all.min.js"></script>
+<script src="assets/modulation.min.js"></script>
 </html>

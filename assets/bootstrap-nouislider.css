@@ -1,0 +1,46 @@
+.noUi-horizontal.noUi-extended {
+    padding-right: 32px;
+}
+.noUi-horizontal.noUi-extended .noUi-handle {
+    left: -1px;
+}
+.noUi-horizontal.noUi-extended .noUi-origin  {
+    right: -32px;
+}
+
+.noUi-extended .noUi-active,
+.noUi-extended .noUi-handle {
+    box-shadow: none;
+    border-radius: 6px;
+}
+
+
+.noUi-target {
+	margin-bottom: 10px;
+}
+
+.noUi-horizontal {
+    height: 14px;
+
+    box-shadow: none;
+    border: 0;
+    border: 1px solid #e5e5e5;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 34px;
+    height: 26px;
+    left: -13px;
+    top: -7px;
+    border-color: #ccc;
+    cursor: pointer;
+}
+
+.noUi-horizontal .noUi-handle {
+	// background-color: #eee;
+}
+.noUi-horizontal .noUi-handle:before,
+.noUi-horizontal .noUi-handle:after {
+	content: '';
+	background: transparent;	
+}
