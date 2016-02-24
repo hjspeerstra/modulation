@@ -38,14 +38,14 @@
 						<div class="col-sm-12 col-xs-12">
 							<div id="period-{i}" class="noUi-extended"></div>
 							<div class="input-group">
-								<span class="input-group-addon">T<sub>{i}</sub> (hrs):</span>
-								<input type="text" tabindex="{i}" name="period_{i}" class="form-control" placeholder="Period of {i} in hours">
+								<span class="input-group-addon">T<sub>{i}</sub> (s):</span>
+								<input type="text" tabindex="{i}" name="period_{i}" class="form-control" placeholder="Period of {i} in seconds">
 							</div>
 							<br>
 
 							<div id="amplitude-{i}" class="noUi-extended"></div>
 							<div class="input-group">
-								<span class="input-group-addon">a<sub>{i}</sub> (mtrs):</span>
+								<span class="input-group-addon">a<sub>{i}</sub> (m):</span>
 								<input type="text" tabindex="" name="amplitude_{i}" class="form-control" placeholder="Amplitude of {i}">
 							</div>
 							<br>
@@ -69,8 +69,15 @@
 							</div>
 						</div>
 						<h5>Predefined settings</h5>
-						<button class="btn btn-default btn-block" id="sawTooth">Wave skewness</button>
-						<button class="btn btn-default btn-block" id="aSymmetric">Wave asymmetry (saw-tooth)</button>
+						<button class="btn btn-default btn-block" id="M2M4">M2 <small>(12.42hrs)</small> + M4 <small>(6.21hrs)</small></button>
+						<div class="btn-group-justified">
+						<div class="btn-group">
+							<button class="btn btn-default" id="sawTooth">Skewness</button>
+						</div>
+						<div class="btn-group">
+							<button class="btn btn-default" id="aSymmetric">Asymmetry</button>
+						</div>
+						</div>
 						<br>
 
 						<table class="fraction" align="center" cellpadding="10" cellspacing="10">
@@ -120,8 +127,8 @@
 			</div>
 		</div>
 		<!--div style="width: 1140px; heigth: 300px"-->
-		<canvas id="summed" width="2280" height="400" style="width: 1140px; heigth: 200px"></canvas>
-		<canvas id="single" width="2280" height="400" style="width: 1140px; heigth: 200px"></canvas>
+		<canvas id="single" width="2280" height="500" style="width: 1140px; heigth: 250px"></canvas>
+		<canvas id="summed" width="2280" height="500" style="width: 1140px; heigth: 250px"></canvas>
 		<!--/div-->
 	</div>
 </body>
